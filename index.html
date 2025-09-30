@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Chat Bot Proof of Concept</title>
+  </head>
+  <body>
+    <div id="chatHistory" role="log" aria-live="polite" aria-atomic="false">
+
+
+      <div class="message bot-message">
+        <span class="sender">Bot:</span>
+        <p class="text">Hello!</p>
+      </div>
+    </div
+    <label for="Ask:">Ask anything</label>
+    <input type="text" id="prompt" name="prompt" placeholder="Ask your question here!">
+    </input>
+    <script>
+      function addMessage(sender, text,isUser) {
+        const chatHistory = document.getElementById('chatHistory');
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+
+        const senderSpan = document.createElement('span');
+        senderSpan.className = 'sender';
+        senderSpan.textContent = sender;
+
+        const textP = document.createElement('p');
+        textP.className = 'text';
+        textP.textContent = text;
+
+        messageDiv.appendChild(senderSpan);
+        messageDiv.appendChild(textP);
+        chatHistory.appendChild(messageDiv);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }
+      const promptElement = document.getElementById("prompt");
+      promptElement.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          addMessage("You:",event.target.value, true);
+          promptElement.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
