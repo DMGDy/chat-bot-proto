@@ -30,16 +30,17 @@
   <body>
     <div id="chatHistory" role="log" aria-live="polite" aria-atomic="false">
 
-
       <div class="message bot-message">
         <span class="sender">Bot:</span>
         <p class="text">Hello!</p>
       </div>
     </div
+
     <label for="Ask:">Ask anything</label>
     <input type="text" id="prompt" name="prompt" placeholder="Ask your question here!">
     </input>
     <script>
+
       function addMessage(sender, text,isUser) {
         const chatHistory = document.getElementById('chatHistory');
 
@@ -59,11 +60,15 @@
         chatHistory.appendChild(messageDiv);
         chatHistory.scrollTop = chatHistory.scrollHeight;
       }
+
       const promptElement = document.getElementById("prompt");
+
       promptElement.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
           addMessage("You:",event.target.value, true);
           promptElement.value = "";
+          // TODO: HTTP Post Method with this text as data in JSON
+          // Have server respond with something and update UI
         }
       });
     </script>
