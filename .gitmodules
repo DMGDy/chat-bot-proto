@@ -1,0 +1,3 @@
+[submodule "chat-bot-backend-proto"]
+	path = chat-bot-backend-proto
+	url = git@github.com:DMGDy/chat-bot-backend-proto.git
